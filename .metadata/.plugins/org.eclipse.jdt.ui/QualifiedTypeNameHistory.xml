@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonFormat"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.model.AddressModel"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.VetVNRepository"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.model.VetVNModel"/>
+<fullyQualifiedTypeName name="javax.persistence.Column"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="javax.persistence.Embeddable"/>
+<fullyQualifiedTypeName name="javax.validation.constraints.NotBlank"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.AddressRepository"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.AppointmentRepository"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.jni.Address"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.model.AppointmentModel"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.model.PetModel"/>
+<fullyQualifiedTypeName name="org.hibernate.mapping.Set"/>
+<fullyQualifiedTypeName name="org.hibernate.mapping.List"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.PetRepository"/>
+<fullyQualifiedTypeName name="com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.OwnerRepository"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonView"/>
+</qualifiedTypeNameHistroy>

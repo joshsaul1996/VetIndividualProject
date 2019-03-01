@@ -1,0 +1,138 @@
+package com.qa.saul.josh.springboot.vetProject.vetProjectApp.model;
+import java.io.Serializable;
+import java.util.Date;
+
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+@Entity
+@Table(name = "address")
+@IdClass(AddressModelPK.class)
+@EntityListeners(AuditingEntityListener.class)
+public class AddressModel implements Serializable {
+	
+	@Id
+    @Column(name = "postcode")
+    private String postcode;
+	
+	@Id
+    @Column(name = "house_number")
+    private String house_number;
+	
+	@NotBlank
+	private String address_line_1;
+	
+	
+	private String address_line_2;
+	
+	
+	private String address_line_3;
+	
+	@NotBlank
+	private String city;
+	
+	@NotBlank
+	private String county;
+	
+	@NotBlank
+	private String country;
+	
+	
+	
+	  
+	public AddressModel() {
+		
+	}
+
+	public AddressModel(String postcode, String house_number, @NotBlank String address_line_1, String address_line_2,
+			String address_line_3, @NotBlank String city, @NotBlank String county, @NotBlank String country) {
+		super();
+		this.postcode = postcode;
+		this.house_number = house_number;
+		this.address_line_1 = address_line_1;
+		this.address_line_2 = address_line_2;
+		this.address_line_3 = address_line_3;
+		this.city = city;
+		this.county = county;
+		this.country = country;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getHouse_number() {
+		return house_number;
+	}
+
+	public void setHouse_number(String house_number) {
+		this.house_number = house_number;
+	}
+
+	public String getAddress_line_1() {
+		return address_line_1;
+	}
+
+	public void setAddress_line_1(String address_line_1) {
+		this.address_line_1 = address_line_1;
+	}
+
+	public String getAddress_line_2() {
+		return address_line_2;
+	}
+
+	public void setAddress_line_2(String address_line_2) {
+		this.address_line_2 = address_line_2;
+	}
+
+	public String getAddress_line_3() {
+		return address_line_3;
+	}
+
+	public void setAddress_line_3(String address_line_3) {
+		this.address_line_3 = address_line_3;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	
+	
+}
+	
+	

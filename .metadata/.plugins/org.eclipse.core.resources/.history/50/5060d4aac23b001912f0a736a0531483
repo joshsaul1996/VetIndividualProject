@@ -1,0 +1,87 @@
+package com.qa.saul.josh.springboot.vetProject.vetProjectApp.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.exception.ResourceNotFoundException;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.model.PetModel;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.OwnerRepository;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.PetRepository;
+
+
+
+@RestController
+@RequestMapping("/api")
+public class PetController {
+	
+	@Autowired
+	PetRepository Repository;
+	
+	
+	//Method to create a pet
+	@PostMapping("/createPet")
+	public PetModel createPet(@Valid @RequestBody PetModel mSDM) {
+		return Repository.save(mSDM);
+	}
+	
+	
+	//Method to get a pet
+	@GetMapping("getPet/{pet_id}")
+	@JsonView(OwnerRepository.class)
+	public PetModel getPetbyID(@PathVariable(value = "pet_id")Long pet_id) {
+		return Repository.findById(pet_id).orElseThrow(()->new ResourceNotFoundException("PetModel", "pet_id",pet_id));
+	}
+	
+	//Method to get all pets
+	@GetMapping("/getAllPets")
+	public List<PetModel> getAllPets(){
+		return Repository.findAll();
+	}
+	
+	
+	//Method to update a pet
+	@PutMapping("/updatePet/{pet_id}")
+	public PetModel updatePet(@PathVariable(value = "pet_id") Long pet_id,
+			@Valid @RequestBody PetModel petDetails) {
+		PetModel mSDM = Repository.findById(pet_id).orElseThrow(()-> new ResourceNotFoundException("Pet","pet_id",pet_id));
+		
+		mSDM.setName(petDetails.getName());
+		mSDM.setMicrochip_number(petDetails.getMicrochip_number());
+		mSDM.setSpecies(petDetails.getSpecies());
+		mSDM.setBreed(petDetails.getSpecies());
+		mSDM.setAge(petDetails.getAge());
+		mSDM.setMedical_history(petDetails.getMedical_history());
+		mSDM.setPrescriptions(petDetails.getPrescriptions());
+		
+		
+		PetModel updateData = Repository.save(mSDM);
+		return updateData;
+		
+	}
+	
+	
+	//Method to remove a pet
+	@DeleteMapping("/deletePet/{pet_id}")
+	public ResponseEntity<?> deletePet(@PathVariable(value = "pet_id") Long pet_id){
+		PetModel mSDM = Repository.findById(pet_id).orElseThrow(()->new ResourceNotFoundException("Pet","pet_id",pet_id));
+		
+		
+		Repository.delete(mSDM);
+		return ResponseEntity.ok().build();
+	}
+	
+	
+}

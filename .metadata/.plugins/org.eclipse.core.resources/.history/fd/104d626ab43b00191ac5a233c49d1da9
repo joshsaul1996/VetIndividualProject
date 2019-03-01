@@ -1,0 +1,145 @@
+package com.qa.saul.josh.springboot.vetProject.vetProjectApp.model;
+import java.io.Serializable;
+import java.util.Date;
+
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.mapping.Set;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+@Entity
+@Table(name = "owner")
+@EntityListeners(AuditingEntityListener.class)
+public class OwnerModel implements Serializable {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "owner_id")
+	private Long owner_id;
+	
+	
+	private String first_name;
+	
+	
+	private String last_name;
+	
+	@Email
+	private String email;
+	
+	
+	private String landline_number;
+	
+	
+	private String mobile_number;
+	
+	@OneToMany(mappedBy="owner")
+    private Set<PetModel> pets;
+	
+	
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "address_id", nullable = true)
+//	private AddressModel address;
+	
+	
+
+	public OwnerModel(String first_name, String last_name, @Email String email, String landline_number,
+			String mobile_number, PetModel petModel, AddressModel address) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.email = email;
+		this.landline_number = landline_number;
+		this.mobile_number = mobile_number;
+	}
+
+	public OwnerModel() {
+		
+	}
+
+
+	public Long getIdowner() {
+		return owner_id;
+	}
+
+
+
+	public void setIdowner(Long idowner) {
+		this.owner_id = idowner;
+	}
+
+
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public String getLandline_number() {
+		return landline_number;
+	}
+
+
+
+	public void setLandline_number(String landline_number) {
+		this.landline_number = landline_number;
+	}
+
+
+
+	public String getMobile_number() {
+		return mobile_number;
+	}
+
+
+
+	public void setMobile_number(String mobile_number) {
+		this.mobile_number = mobile_number;
+	}
+
+	
+}
+	
+	

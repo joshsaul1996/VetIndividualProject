@@ -1,0 +1,52 @@
+package com.qa.saul.josh.springboot.vetProject.vetProjectApp.model;
+import java.io.Serializable;
+import java.util.Date;
+
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+@Entity
+@Table(name = "owner")
+@EntityListeners(AuditingEntityListener.class)
+public class OwnerModel implements Serializable {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idowner;
+	
+	@NotBlank
+	private String first_name;
+	
+	@NotBlank
+	private String last_name;
+	
+	@NotBlank
+	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "address")
+	private AddressModel address;
+	
+	@NotBlank
+	private String model;
+	
+	
+	
+	
+	public OwnerModel() {
+		
+	}
+
+	
+	
+}
+	
+	

@@ -1,0 +1,86 @@
+package com.qa.saul.josh.springboot.vetProject.vetProjectApp.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.exception.ResourceNotFoundException;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.model.OwnerModel;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.OwnerRepository;
+import com.qa.saul.josh.springboot.vetProject.vetProjectApp.repository.PetRepository;
+
+
+
+@RestController
+@RequestMapping("/api")
+public class OwnerController {
+	
+	@Autowired
+	OwnerRepository Repository;
+	
+	
+	//Method to create a owner
+	@PostMapping("/createOwner")
+	public OwnerModel createOwner(@Valid @RequestBody OwnerModel mSDM) {
+		return Repository.save(mSDM);
+	}
+	
+	
+	//Method to get a owner
+	@GetMapping("getOwner/{owner_id}")
+	@JsonView(OwnerRepository.class)
+	public OwnerModel getOwner(@PathVariable(value = "owner_id")Long owner_id) {
+		return Repository.findById(owner_id).orElseThrow(()->new ResourceNotFoundException("OwnerModel", "owner_id",owner_id));
+	}
+		
+		
+	//Method to get all owners
+	@GetMapping("/getOwners")
+	@JsonView(PetRepository.class)
+	public List<OwnerModel> getAllOwners(){
+		return Repository.findAll();
+	}
+	
+	
+	//Method to update a owner
+	@PutMapping("/updateOwner/{owner_id}")
+	public OwnerModel updateOwner(@PathVariable(value = "owner_id") Long owner_id,
+			@Valid @RequestBody OwnerModel ownerDetails) {
+		OwnerModel mSDM = Repository.findById(owner_id).orElseThrow(()-> new ResourceNotFoundException("Owner","owner_id",owner_id));
+		
+		mSDM.setFirst_name(ownerDetails.getFirst_name());
+		mSDM.setLast_name(ownerDetails.getLast_name());
+		mSDM.setEmail(ownerDetails.getEmail());
+		mSDM.setLandline_number(ownerDetails.getLandline_number());
+		mSDM.setMobile_number(ownerDetails.getMobile_number());
+		
+		
+		OwnerModel updateData = Repository.save(mSDM);
+		return updateData;
+		
+	}
+	
+	
+	//Method to remove a owner
+	@DeleteMapping("/deleteOwner/{owner_id}")
+	public ResponseEntity<?> deleteOwner(@PathVariable(value = "owner_id") Long owner_id){
+		OwnerModel mSDM = Repository.findById(owner_id).orElseThrow(()->new ResourceNotFoundException("Owner","owner_id",owner_id));
+		
+		
+		Repository.delete(mSDM);
+		return ResponseEntity.ok().build();
+	}
+	
+}

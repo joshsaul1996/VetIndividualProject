@@ -1,0 +1,22 @@
+!SESSION 2019-03-01 03:09:45.479 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=1.8.0_191
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+This is a continuation of log file C:\Users\joshs\Documents\Vet-Surgery-Project\.metadata\.bak_6.log
+Created Time: 2019-03-01 04:33:39.316
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-01 04:33:39.318
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.ZXhBFkYp
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-01 04:33:39.318
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.ZXhBFkYp
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-01 04:33:39.318
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2019-03-01 04:33:39.318
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.ZXhBFkYp => OK
